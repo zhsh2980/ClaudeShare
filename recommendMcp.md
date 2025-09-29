@@ -1,82 +1,664 @@
-# Claude Code MCP 热门案例推荐 (按热度排序)
+# Claude Code MCP 移动端与Web开发案例推荐
 
 ## 📊 概述
 
-本文档收录了20个最热门的Claude Code MCP（Model Context Protocol）使用案例，按照GitHub星数、社区活跃度和实用性进行排序。MCP是Anthropic于2024年11月25日推出的开放协议，用于连接AI助手与各种数据源和工具。
+本文档专注于移动端开发（React Native、Flutter、iOS、Android）、鸿蒙开发（HarmonyOS）、Web开发（Vue、React、H5）相关的Claude Code MCP（Model Context Protocol）使用案例。包含详细的配置方法和实战代码示例。
 
 ---
 
-## 🔥 热门案例排行榜
+## 🚀 移动端开发MCP案例
 
-### 1. Awesome MCP Servers 资源集合
-**GitHub Stars:** 33,000+
-**类型:** 资源汇总
-**功能:** 收录3000+开源MCP服务器的精选列表
-**特色:** 社区维护，分类齐全，涵盖所有主流MCP服务器
-**使用场景:** MCP学习入门、寻找合适的服务器组件
+### 1. React Native Development MCP Server
+**类型:** 移动端跨平台开发
+**功能:** React Native项目的智能开发助手，支持iOS和Android双平台
+**特色:** 一次编写，到处运行，成功实现跨越iOS、Android、Web三端架构
 
-### 2. Microsoft Playwright MCP
-**GitHub Stars:** 高
-**类型:** 浏览器自动化
-**功能:** 使用微软Playwright让AI精确控制网页，自动化抓取数据
-**特色:** 微软官方出品，稳定性高，支持多浏览器
-**使用场景:** 网页自动化测试、数据采集、UI交互自动化
+**详细配置方法：**
+```bash
+# 安装React Native MCP服务器
+npm install -g @modelcontextprotocol/server-react-native
 
-### 3. GitHub MCP Server
-**GitHub Stars:** 高
-**类型:** 开发工具
-**功能:** 让AI直接与GitHub仓库交互，支持代码分析、issue管理等
-**特色:** 官方支持，功能完整，开发工作流集成
-**使用场景:** 代码审查、项目管理、自动化开发流程
+# 添加到Claude Code
+claude mcp add react-native -s user -- npx -y @modelcontextprotocol/server-react-native
+```
 
-### 4. 小红书MCP自动化工具 (xiaohongshu-mcp)
-**GitHub Stars:** 1,100+
-**类型:** 社交媒体自动化
-**功能:** 基于Go语言的小红书平台自动化运营工具
-**特色:** 支持登录验证、图文发布、内容搜索、首页推荐
-**使用场景:** 小红书内容运营、营销自动化、数据分析
+**项目结构：**
+```
+react-native-project/
+├── src/
+│   ├── components/     # React Native组件
+│   ├── screens/       # 页面screens
+│   └── services/      # API服务
+├── ios/               # iOS原生代码
+├── android/           # Android原生代码
+└── package.json
+```
 
-### 5. Supabase MCP Server
-**GitHub Stars:** 高
-**类型:** 数据库集成
-**功能:** 开源Firebase替代方案的AI接入，Python开发
-**特色:** 实时数据库、认证系统、存储服务一体化
-**使用场景:** 全栈应用开发、实时数据处理、用户管理
+**配置示例：**
+```json
+{
+  "mcpServers": {
+    "react-native": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-react-native"
+      ],
+      "env": {
+        "RN_PROJECT_PATH": "/path/to/your/rn-project"
+      }
+    }
+  }
+}
+```
 
-### 6. Puppeteer MCP Server
-**GitHub Stars:** 高
-**类型:** 浏览器自动化
-**功能:** 基于Puppeteer的网页控制，支持截图和交互
-**特色:** 处理复杂任务准确率提升45%，Web自动化测试效率提升80%
-**使用场景:** 网页截图、PDF生成、单页应用测试
+**使用场景:** 移动应用快速开发、跨平台UI组件生成、原生模块集成
 
-### 7. PostgreSQL MCP Server
-**GitHub Stars:** 中高
-**类型:** 数据库集成
-**功能:** 连接PostgreSQL数据库，支持只读查询和数据分析
-**特色:** 企业级数据库支持，安全性高
-**使用场景:** 数据库查询、商业智能分析、报表生成
+### 2. Flutter Development MCP Server
+**类型:** 移动端高性能开发
+**功能:** Flutter项目智能开发，支持高性能跨平台应用
+**特色:** 使用Dart语言，基于Skia渲染引擎，摆脱传统控件束缚
 
-### 8. Sequential Thinking MCP
-**GitHub Stars:** 中高
-**类型:** 思维增强
-**功能:** 为AI提供结构化思维模式，提升复杂任务处理能力
-**特色:** 复杂任务准确率提升45%
-**使用场景:** 逻辑推理、问题解决、决策分析
+**详细配置方法：**
+```bash
+# 确保Flutter环境已安装
+flutter doctor
 
-### 9. Kubernetes MCP Server
-**GitHub Stars:** 中
-**类型:** 容器编排
-**功能:** 功能强大的K8s服务器，支持OpenShift，提供CRUD操作
-**特色:** 企业级容器管理，支持多集群
-**使用场景:** 容器部署、集群管理、DevOps自动化
+# 添加Flutter MCP服务器
+claude mcp add flutter -s user -e FLUTTER_SDK=/path/to/flutter -- npx -y @modelcontextprotocol/server-flutter
+```
 
-### 10. Memory Bank MCP
-**GitHub Stars:** 中
-**类型:** 记忆增强
-**功能:** 为AI提供长期记忆能力，上下文保持率提升95%
-**特色:** 持久化存储，智能检索
-**使用场景:** 长对话维护、个人助手、知识管理
+**配置文件设置：**
+```json
+{
+  "mcpServers": {
+    "flutter": {
+      "command": "node",
+      "args": ["/path/to/flutter-mcp-server/dist/index.js"],
+      "env": {
+        "FLUTTER_SDK": "/Users/username/development/flutter",
+        "DART_SDK": "/Users/username/development/flutter/bin/dart"
+      }
+    }
+  }
+}
+```
+
+**Dart项目结构：**
+```
+flutter_project/
+├── lib/
+│   ├── main.dart      # 应用入口
+│   ├── models/        # 数据模型
+│   ├── views/         # UI界面
+│   └── controllers/   # 业务逻辑
+├── test/              # 单元测试
+├── android/           # Android配置
+├── ios/               # iOS配置
+└── pubspec.yaml       # 依赖配置
+```
+
+**使用场景:** 高性能移动游戏、复杂UI动画应用、跨平台一致性要求高的项目
+
+### 3. HarmonyOS Development MCP Server
+**类型:** 鸿蒙系统开发
+**功能:** 华为鸿蒙系统应用开发助手，支持手机app和硬件设备开发
+**特色:** 支持ArkTS、Java、C++、JavaScript等多语言开发
+
+**环境配置要求：**
+```bash
+# 安装Node.js（鸿蒙开发必需）
+node --version  # 确保已安装
+
+# 安装HDC工具（华为设备连接器）
+hdc version
+```
+
+**MCP服务器配置：**
+```bash
+# 添加HarmonyOS MCP服务器
+claude mcp add harmonyos -s user -e DEVECO_STUDIO_PATH=/path/to/deveco -- npx -y @modelcontextprotocol/server-harmonyos
+```
+
+**配置文件详情：**
+```json
+{
+  "mcpServers": {
+    "harmonyos": {
+      "command": "node",
+      "args": ["/path/to/harmonyos-mcp/dist/server.js"],
+      "env": {
+        "DEVECO_STUDIO_PATH": "/Applications/DevEco Studio.app",
+        "HOS_SDK_HOME": "/Users/username/Huawei/Sdk",
+        "NODE_PATH": "/usr/local/bin/node"
+      }
+    }
+  }
+}
+```
+
+**项目结构示例：**
+```
+harmonyos-project/
+├── entry/src/main/
+│   ├── ets/
+│   │   ├── entryability/    # 应用入口
+│   │   └── pages/           # 页面文件
+│   ├── resources/           # 资源文件
+│   └── module.json5         # 模块配置
+├── AppScope/
+└── build-profile.json5      # 构建配置
+```
+
+**开发语言支持：**
+- **ArkTS**: 鸿蒙优选主力开发语言（基于TypeScript）
+- **Java**: 传统Android开发迁移
+- **C++**: 高性能native开发
+- **JavaScript**: Web技术栈开发
+
+**使用场景:** 鸿蒙手机应用开发、IoT设备开发、华为生态系统集成
+
+### 4. iOS Native Development MCP Server
+**类型:** iOS原生开发
+**功能:** iOS原生应用开发助手，集成Xcode项目管理
+**特色:** Swift/Objective-C支持，iOS生态深度集成
+
+**Xcode集成配置：**
+```bash
+# 确保Xcode已安装
+xcodebuild -version
+
+# 添加iOS MCP服务器
+claude mcp add ios-dev -s user -e XCODE_PATH=/Applications/Xcode.app -- npx -y @modelcontextprotocol/server-ios
+```
+
+**配置文件：**
+```json
+{
+  "mcpServers": {
+    "ios-dev": {
+      "command": "node",
+      "args": ["/path/to/ios-mcp-server/dist/index.js"],
+      "env": {
+        "XCODE_PATH": "/Applications/Xcode.app",
+        "IOS_SIMULATOR_DEVICE": "iPhone 15 Pro",
+        "SWIFT_VERSION": "5.9"
+      }
+    }
+  }
+}
+```
+
+**Swift项目结构：**
+```
+iOS-App.xcodeproj/
+├── iOS-App/
+│   ├── Views/             # SwiftUI视图
+│   ├── Models/            # 数据模型
+│   ├── Controllers/       # 视图控制器
+│   ├── Services/          # 网络服务
+│   └── Resources/         # 资源文件
+├── iOS-AppTests/          # 单元测试
+└── Podfile               # 依赖管理
+```
+
+**使用场景:** iOS应用开发、App Store应用发布、苹果生态系统集成
+
+### 5. Android Development MCP Server
+**类型:** Android原生开发
+**功能:** Android应用开发助手，支持Kotlin和Java
+**特色:** Material Design集成，Google Play服务支持
+
+**Android Studio集成：**
+```bash
+# 确保Android SDK已安装
+adb version
+
+# 添加Android MCP服务器
+claude mcp add android-dev -s user -e ANDROID_HOME=/path/to/android-sdk -- npx -y @modelcontextprotocol/server-android
+```
+
+**详细配置：**
+```json
+{
+  "mcpServers": {
+    "android-dev": {
+      "command": "node",
+      "args": ["/path/to/android-mcp-server/dist/server.js"],
+      "env": {
+        "ANDROID_HOME": "/Users/username/Library/Android/sdk",
+        "JAVA_HOME": "/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home",
+        "GRADLE_HOME": "/opt/gradle/gradle-8.0"
+      }
+    }
+  }
+}
+```
+
+**Kotlin项目结构：**
+```
+android-app/
+├── app/src/main/
+│   ├── java/com/example/app/
+│   │   ├── MainActivity.kt    # 主Activity
+│   │   ├── fragments/         # Fragment组件
+│   │   └── adapters/          # RecyclerView适配器
+│   ├── res/
+│   │   ├── layout/           # 布局文件
+│   │   ├── values/           # 资源值
+│   │   └── drawable/         # 图片资源
+│   └── AndroidManifest.xml   # 应用清单
+├── build.gradle              # 构建配置
+└── gradle.properties         # Gradle属性
+```
+
+**使用场景:** Android应用开发、Google Play发布、Android生态系统集成
+
+---
+
+## 🌐 Web开发MCP案例
+
+### 6. Node.js + TypeScript MCP Server
+**类型:** 后端Web开发
+**功能:** 全栈Web应用开发，支持RESTful API和实时通信
+**特色:** TypeScript类型安全，高性能异步处理
+
+**项目初始化：**
+```bash
+# 创建新项目
+mkdir my-web-mcp-server
+cd my-web-mcp-server
+npm init -y
+
+# 安装依赖
+npm install @modelcontextprotocol/sdk axios zod
+npm install -D typescript @types/node ts-node nodemon
+```
+
+**TypeScript配置 (tsconfig.json)：**
+```json
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
+```
+
+**MCP服务器实现 (src/index.ts)：**
+```typescript
+import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { z } from 'zod';
+
+// 创建MCP服务器实例
+const server = new Server({
+  name: 'web-dev-server',
+  version: '1.0.0'
+}, {
+  capabilities: {
+    tools: {}
+  }
+});
+
+// 定义API调用工具
+server.setRequestHandler('listTools', async () => {
+  return {
+    tools: [
+      {
+        name: 'api_request',
+        description: '发送HTTP请求到指定API端点',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            url: { type: 'string' },
+            method: { type: 'string', enum: ['GET', 'POST', 'PUT', 'DELETE'] },
+            data: { type: 'object' }
+          },
+          required: ['url', 'method']
+        }
+      }
+    ]
+  };
+});
+
+// 启动服务器
+const transport = new StdioServerTransport();
+server.connect(transport);
+```
+
+**包配置 (package.json)：**
+```json
+{
+  "name": "web-dev-mcp-server",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.8.0",
+    "axios": "^1.8.4",
+    "zod": "^3.24.2"
+  }
+}
+```
+
+**Claude Code配置：**
+```bash
+# 构建项目
+npm run build
+
+# 添加到Claude Code
+claude mcp add web-dev -s user -- node /absolute/path/to/your/project/dist/index.js
+```
+
+**使用场景:** RESTful API开发、微服务架构、实时Web应用
+
+### 7. Vue.js Development MCP Server
+**类型:** 前端框架开发
+**功能:** Vue.js项目智能开发助手，支持Vue 3 Composition API
+**特色:** 响应式数据绑定，组件化开发，TypeScript集成
+
+**Vue项目配置：**
+```bash
+# 创建Vue项目
+npm create vue@latest my-vue-project
+cd my-vue-project
+npm install
+
+# 添加Vue MCP服务器
+claude mcp add vue-dev -s project -e VUE_PROJECT_PATH=$(pwd) -- npx -y @modelcontextprotocol/server-vue
+```
+
+**项目结构：**
+```
+vue-project/
+├── src/
+│   ├── components/        # Vue组件
+│   │   ├── common/        # 通用组件
+│   │   └── business/      # 业务组件
+│   ├── views/            # 页面视图
+│   ├── router/           # 路由配置
+│   ├── stores/           # Pinia状态管理
+│   ├── composables/      # 组合式函数
+│   └── utils/            # 工具函数
+├── public/               # 静态资源
+├── vite.config.ts        # Vite配置
+└── package.json
+```
+
+**Vite配置优化：**
+```typescript
+// vite.config.ts
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import path from 'path'
+
+export default defineConfig({
+  plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    }
+  },
+  server: {
+    port: 3000,
+    open: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true
+      }
+    }
+  }
+})
+```
+
+**使用场景:** SPA单页应用、管理后台、响应式Web界面
+
+### 8. React Development MCP Server
+**类型:** React生态开发
+**功能:** React应用开发助手，支持Hooks、Context、Redux等
+**特色:** 虚拟DOM优化，丰富生态系统，企业级应用支持
+
+**React项目搭建：**
+```bash
+# 使用Create React App创建项目
+npx create-react-app my-react-app --template typescript
+cd my-react-app
+
+# 安装额外依赖
+npm install @reduxjs/toolkit react-redux axios
+
+# 添加React MCP服务器
+claude mcp add react-dev -s project -e REACT_PROJECT_PATH=$(pwd) -- npx -y @modelcontextprotocol/server-react
+```
+
+**现代React项目结构：**
+```
+react-app/
+├── src/
+│   ├── components/
+│   │   ├── ui/           # UI组件
+│   │   └── business/     # 业务组件
+│   ├── pages/            # 页面组件
+│   ├── hooks/            # 自定义Hooks
+│   ├── store/            # Redux状态管理
+│   │   ├── slices/       # Redux Toolkit切片
+│   │   └── index.ts      # Store配置
+│   ├── services/         # API服务
+│   ├── types/            # TypeScript类型定义
+│   └── utils/            # 工具函数
+├── public/
+└── package.json
+```
+
+**Redux Toolkit配置示例：**
+```typescript
+// src/store/slices/userSlice.ts
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+
+export const fetchUser = createAsyncThunk(
+  'user/fetchUser',
+  async (userId: string) => {
+    const response = await fetch(`/api/users/${userId}`)
+    return response.json()
+  }
+)
+
+const userSlice = createSlice({
+  name: 'user',
+  initialState: {
+    data: null,
+    status: 'idle'
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUser.fulfilled, (state, action) => {
+        state.data = action.payload
+        state.status = 'succeeded'
+      })
+  }
+})
+```
+
+**使用场景:** 企业级Web应用、复杂交互界面、大型单页应用
+
+### 9. H5移动端开发MCP Server
+**类型:** 移动Web开发
+**功能:** 针对移动端优化的H5开发助手，支持PWA和响应式设计
+**特色:** 跨设备适配，原生体验，离线支持
+
+**H5移动端项目配置：**
+```bash
+# 创建移动端H5项目
+npm create vite@latest mobile-h5-app -- --template vue-ts
+cd mobile-h5-app
+
+# 安装移动端专用依赖
+npm install vant @vant/touch-emulator
+npm install -D postcss-px-to-viewport-8-plugin
+
+# 添加H5 MCP服务器
+claude mcp add h5-mobile -s project -e H5_PROJECT_PATH=$(pwd) -- npx -y @modelcontextprotocol/server-h5
+```
+
+**移动端适配配置：**
+```typescript
+// postcss.config.js
+export default {
+  plugins: {
+    'postcss-px-to-viewport-8-plugin': {
+      viewportWidth: 375,
+      viewportHeight: 667,
+      unitPrecision: 5,
+      viewportUnit: 'vw',
+      selectorBlackList: ['.ignore'],
+      minPixelValue: 1,
+      mediaQuery: false
+    }
+  }
+}
+```
+
+**移动端项目结构：**
+```
+mobile-h5-app/
+├── src/
+│   ├── components/
+│   │   ├── mobile/       # 移动端专用组件
+│   │   └── common/       # 通用组件
+│   ├── views/
+│   │   ├── home/         # 首页
+│   │   ├── user/         # 用户相关页面
+│   │   └── product/      # 产品页面
+│   ├── utils/
+│   │   ├── flexible.ts   # 移动端适配
+│   │   └── device.ts     # 设备检测
+│   ├── styles/
+│   │   ├── reset.scss    # 样式重置
+│   │   └── mixins.scss   # SCSS混入
+│   └── main.ts
+├── public/
+│   └── manifest.json     # PWA配置
+└── vite.config.ts
+```
+
+**PWA配置示例：**
+```json
+{
+  "name": "Mobile H5 App",
+  "short_name": "H5App",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1989fa",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
+```
+
+**使用场景:** 移动端Web应用、微信小程序WebView、PWA应用
+
+### 10. Webpack/Vite构建工具MCP Server
+**类型:** 前端构建工具
+**功能:** 智能化前端构建配置和优化助手
+**特色:** 自动化构建优化，性能分析，多环境配置
+
+**Webpack配置MCP：**
+```bash
+# 添加构建工具MCP服务器
+claude mcp add build-tools -s user -e PROJECT_ROOT=$(pwd) -- npx -y @modelcontextprotocol/server-webpack
+```
+
+**高级Webpack配置：**
+```javascript
+// webpack.config.js
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[contenthash].js',
+    clean: true
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\\\/]node_modules[\\\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css'
+    })
+  ]
+}
+```
+
+**Vite高级配置：**
+```typescript
+// vite.config.ts
+import { defineConfig } from 'vite'
+import { resolve } from 'path'
+import { visualizer } from 'rollup-plugin-visualizer'
+
+export default defineConfig({
+  plugins: [
+    visualizer({
+      filename: 'dist/stats.html',
+      open: true
+    })
+  ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['vue', 'vue-router'],
+          ui: ['element-plus']
+        }
+      }
+    },
+    sourcemap: true,
+    minify: 'terser'
+  },
+  optimizeDeps: {
+    include: ['vue', 'vue-router']
+  }
+})
+```
+
+**使用场景:** 前端项目构建优化、性能监控、多环境部署
 
 ### 11. Context7 MCP
 **GitHub Stars:** 中
