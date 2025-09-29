@@ -660,75 +660,230 @@ export default defineConfig({
 
 **使用场景:** 前端项目构建优化、性能监控、多环境部署
 
-### 11. Context7 MCP
-**GitHub Stars:** 中
-**类型:** 代码分析
-**功能:** 提供代码上下文分析，代码错误率降低55%
-**特色:** 智能代码理解，错误预测
-**使用场景:** 代码审查、bug修复、重构建议
+### 11. GraphQL API MCP Server
+**类型:** API开发服务
+**功能:** GraphQL API开发和管理助手，支持查询优化
+**特色:** 类型安全、单一端点、数据获取精准
 
-### 12. Docker MCP Server
-**GitHub Stars:** 中
-**类型:** 容器管理
-**功能:** Docker容器生命周期管理，部署时间减少50%
-**特色:** 简化容器操作，自动化部署
-**使用场景:** 应用部署、开发环境管理、CI/CD
+**GraphQL项目配置：**
+```bash
+# 创建GraphQL项目
+npm init -y
+npm install apollo-server-express graphql
+npm install -D @types/node typescript ts-node
 
-### 13. Browserbase MCP Server
-**GitHub Stars:** 中
-**类型:** 云端浏览器
-**功能:** 云端浏览器自动化服务，能导航网页、提取数据、填表单
-**特色:** 云端执行，无需本地浏览器环境
-**使用场景:** 大规模数据采集、表单自动化、网站监控
+# 添加GraphQL MCP服务器
+claude mcp add graphql-api -s project -e GRAPHQL_PROJECT_PATH=$(pwd) -- npx -y @modelcontextprotocol/server-graphql
+```
 
-### 14. E2B Cloud Sandbox
-**GitHub Stars:** 中
-**类型:** 代码执行
-**功能:** 在E2B提供的安全云沙盒中运行代码
-**特色:** 多语言支持，安全隔离
-**使用场景:** 代码教学、安全代码执行、开发测试
+**Schema定义示例：**
+```typescript
+// src/schema.ts
+import { gql } from 'apollo-server-express'
 
-### 15. Pydantic AI Python Runner
-**GitHub Stars:** 中
-**类型:** Python执行
-**功能:** 在安全的沙盒环境中运行Python代码，适合开发编程代理
-**特色:** Python专用，类型安全
-**使用场景:** Python开发、数据科学、AI模型训练
+export const typeDefs = gql`
+  type User {
+    id: ID!
+    name: String!
+    email: String!
+    posts: [Post!]!
+  }
 
-### 16. 天气预报MCP服务器
-**GitHub Stars:** 中低
-**类型:** 数据服务
-**功能:** 集成美国国家气象局API，提供天气警报和预报
-**特色:** 实时数据，地理定位支持
-**使用场景:** 天气查询、出行规划、农业应用
+  type Post {
+    id: ID!
+    title: String!
+    content: String!
+    author: User!
+  }
 
-### 17. Chroma Vector Database MCP
-**GitHub Stars:** 中低
-**类型:** 向量数据库
-**功能:** 用于嵌入、向量搜索、文档存储和全文搜索
-**特色:** AI优化，向量检索高效
-**使用场景:** 语义搜索、推荐系统、知识问答
+  type Query {
+    users: [User!]!
+    user(id: ID!): User
+    posts: [Post!]!
+  }
 
-### 18. 阿里云AnalyticDB MCP
-**GitHub Stars:** 中低
-**类型:** 云数据库
-**功能:** 阿里云AnalyticDB官方集成，连接数据库集群进行元数据查询和数据分析
-**特色:** 云原生，高性能分析
-**使用场景:** 大数据分析、商业智能、实时报表
+  type Mutation {
+    createUser(name: String!, email: String!): User!
+    createPost(title: String!, content: String!, authorId: ID!): Post!
+  }
+`
+```
 
-### 19. 企业微信机器人MCP
-**GitHub Stars:** 低
-**类型:** 企业通讯
-**功能:** 向企业微信群发送消息，支持自动化通知
-**特色:** 企业级集成，消息推送
-**使用场景:** 企业通知、工作流自动化、团队协作
+**使用场景:** 统一API网关、微服务查询、移动应用后端
 
-### 20. Filesystem MCP Server
-**GitHub Stars:** 低
-**类型:** 文件系统
-**功能:** 提供文件系统访问能力，支持文件读写操作
-**特色:** 基础功能，安全控制
-**使用场景:** 文件管理、日志处理、配置管理
+### 12. Electron桌面应用MCP Server
+**类型:** 跨平台桌面应用
+**功能:** Electron桌面应用开发助手，支持跨平台打包
+**特色:** Web技术栈开发原生体验的桌面应用
+
+**Electron项目搭建：**
+```bash
+# 初始化Electron项目
+npm init -y
+npm install electron --save-dev
+npm install electron-builder --save-dev
+
+# 添加Electron MCP服务器
+claude mcp add electron-app -s project -e ELECTRON_PROJECT_PATH=$(pwd) -- npx -y @modelcontextprotocol/server-electron
+```
+
+**主进程配置：**
+```javascript
+// main.js
+const { app, BrowserWindow } = require('electron')
+const path = require('path')
+
+function createWindow() {
+  const mainWindow = new BrowserWindow({
+    width: 1200,
+    height: 800,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false
+    }
+  })
+
+  mainWindow.loadFile('index.html')
+}
+
+app.whenReady().then(createWindow)
+```
+
+**打包配置：**
+```json
+{
+  "build": {
+    "appId": "com.example.electronapp",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "renderer/**/*",
+      "node_modules/**/*"
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}
+```
+
+**使用场景:** 跨平台桌面工具、本地应用封装、IDE工具开发
+
+### 13. WeChat小程序MCP Server
+**类型:** 微信小程序开发
+**功能:** 微信小程序开发助手，集成微信API和组件库
+**特色:** 微信生态深度集成，支持云开发
+
+**小程序项目结构：**
+```
+wechat-miniprogram/
+├── pages/
+│   ├── index/
+│   │   ├── index.js
+│   │   ├── index.json
+│   │   ├── index.wxml
+│   │   └── index.wxss
+│   └── profile/
+├── utils/
+│   └── util.js
+├── app.js
+├── app.json
+├── app.wxss
+└── project.config.json
+```
+
+**使用场景:** 微信生态应用、电商小程序、企业服务工具
+
+### 14. Next.js全栈开发MCP Server
+**类型:** React全栈框架
+**功能:** Next.js全栈应用开发助手，支持SSR/SSG
+**特色:** 性能优化、SEO友好、服务端渲染
+
+**Next.js项目初始化：**
+```bash
+npx create-next-app@latest my-next-app --typescript --tailwind --eslint
+cd my-next-app
+
+# 添加Next.js MCP服务器
+claude mcp add nextjs-app -s project -e NEXTJS_PROJECT_PATH=$(pwd) -- npx -y @modelcontextprotocol/server-nextjs
+```
+
+**使用场景:** 企业级Web应用、博客网站、电商平台
+
+### 15. Nuxt.js Vue全栈MCP Server
+**类型:** Vue全栈框架
+**功能:** Nuxt.js全栈应用开发，支持服务端渲染
+**特色:** Vue生态优化、自动路由、模块化架构
+
+**使用场景:** Vue企业应用、内容管理系统、多语言网站
+
+### 16. Tailwind CSS样式MCP Server
+**类型:** CSS框架工具
+**功能:** Tailwind CSS原子类样式开发助手
+**特色:** 快速样式开发、响应式设计、优化打包
+
+**使用场景:** 现代化Web界面设计、快速原型开发
+
+### 17. Jest测试框架MCP Server
+**类型:** 前端测试工具
+**功能:** 自动化测试用例生成和管理
+**特色:** 单元测试、集成测试、覆盖率统计
+
+**使用场景:** 代码质量保证、TDD开发、CI/CD集成
+
+### 18. ESLint代码规范MCP Server
+**类型:** 代码质量工具
+**功能:** 代码规范检查和自动修复
+**特色:** 可配置规则、自动修复、IDE集成
+
+**使用场景:** 团队代码规范统一、代码质量提升
+
+### 19. Storybook组件开发MCP Server
+**类型:** UI组件开发工具
+**功能:** UI组件展示和文档生成
+**特色:** 组件隔离开发、交互文档、自动化测试
+
+**使用场景:** 组件库开发、设计系统构建、UI文档
+
+### 20. PWA渐进式Web应用MCP Server
+**类型:** 渐进式Web应用
+**功能:** PWA应用开发助手，支持离线功能和Push通知
+**特色:** 原生体验、离线可用、跨平台兼容
+
+**PWA核心功能配置：**
+```javascript
+// sw.js
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open('v1').then(cache => {
+      return cache.addAll([
+        '/',
+        '/index.html',
+        '/app.js',
+        '/app.css'
+      ])
+    })
+  )
+})
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request)
+    })
+  )
+})
+```
+
+**使用场景:** 移动端Web应用、离线应用、跨平台应用
 
 ---
 
