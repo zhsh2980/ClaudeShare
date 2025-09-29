@@ -5,29 +5,5 @@
     ],
     "deny": [],
     "ask": []
-  },
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 /Users/zhangshan/.claude/hooks/save-prompt.py"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Edit|MultiEdit|Write|NotebookEdit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 /Users/zhangshan/.claude/hooks/auto-commit-on-edit.py"
-          }
-        ]
-      }
-    ]
   }
 }
