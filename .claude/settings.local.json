@@ -24,7 +24,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ~/.claude/hooks/auto-commit-on-edit.py"
+            "command": "python3 /Users/zhangshan/.claude/hooks/auto-commit-on-edit.py"
           }
         ]
       }
