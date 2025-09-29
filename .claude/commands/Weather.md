@@ -1,1 +1,1 @@
-帮我查看一下 ARGUMENTS 在 ARGUMENTS 这一天的天气 
+帮我查看一下 $ARGUMENTS 在 $ARGUMENTS 这一天的天气 
