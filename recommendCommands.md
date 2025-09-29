@@ -1,6 +1,6 @@
-# Claude Code 自定义命令推荐大全 (20个中文案例)
+# Claude Code 移动端/Web/鸿蒙开发自定义命令大全 (20个专业案例)
 
-基于网络搜集和实战经验，整理了 Claude Code 自定义命令的完整资源库。
+基于最新的移动端开发、鸿蒙开发、Web和H5开发需求，整理了针对性的 Claude Code 自定义命令实用案例。
 
 ## 📚 资源来源
 
@@ -8,30 +8,35 @@
 - [斜杠命令文档](https://docs.claude.com/zh-CN/docs/claude-code/slash-commands)
 - [Claude Code 快速开始](https://docs.claude.com/zh-CN/docs/claude-code/quickstart)
 
-### 中文博客资源
-- [榨干 Claude Code 的 16 个实用小技巧](https://www.cnblogs.com/javastack/p/18978280)
-- [Claude Code 用法全面拆解！26 项核心功能](https://zhuanlan.zhihu.com/p/1928918331810886674)
-- [全面掌控 Claude Code：命令 + 参数 + 快捷键一文全整理](https://aicoding.csdn.net/6871255fa6db534ba2b8686f.html)
-- [Claude Code 最佳实践指南](https://www.xuanyuanli.cn/pages/claude-code-best-practices/)
+### 移动端开发资源
+- [Claude加速Android App开发实战](https://blog.csdn.net/u011897062/article/details/142264912)
+- [Cursor+Claude-3.5生成Android app](https://blog.csdn.net/weixin_41688410/article/details/146430386)
+- [Claude Code 中文开发套件](https://github.com/hifoxdot/claude-init-CN)
+- [React Native with Claude AI 完整教程](https://designcode.io/react-native-ai/)
 
-### 开源项目
-- [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code)
-- [claude-code-guide](https://github.com/Joseph19820124/claude-code-guide)
+### 鸿蒙开发资源
+- [HarmonyOS ArkUI 框架实现原理和落地实践](https://zhuanlan.zhihu.com/p/679207951)
+- [跟老卫学HarmonyOS开发教程](https://gitee.com/waylau/harmonyos-tutorial)
+- [ArkTS语法和鸿蒙组件实战项目](https://github.com/hi-dhl/HarmonyPractice)
+- [华为开发者联盟 ArkUI声明式UI开发框架](https://developer.huawei.com/consumer/cn/arkui/)
+
+### Web/H5开发资源
+- [Claude Code权威实践指南](https://zhuanlan.zhihu.com/p/1920263182062163086)
+- [Claude Code深度实战完整开发指南](https://aicoding.csdn.net/68872aac080e555a88d2f7f7.html)
+- [Claude Code前端开发工作流自动化](https://mcp.csdn.net/686e9470080e555a88ce6b04.html)
+- [Taro多端开发框架实战教程](https://coding.imooc.com/class/306.html)
 
 ## 🎯 自定义命令概述
 
 ### 目录结构
 ```
 .claude/commands/          # 项目级命令 (前缀 /project:)
-├── dev/                   # 开发相关
-├── git/                   # Git工作流
-├── test/                  # 测试相关
-├── deploy/                # 部署运维
-├── docs/                  # 文档相关
-├── security/              # 安全检查
-├── data/                  # 数据分析
+├── mobile/                # 移动端开发
+├── harmony/               # 鸿蒙开发
 ├── web/                   # Web开发
-└── devops/                # 运维部署
+├── h5/                    # H5开发
+├── cross/                 # 跨平台开发
+└── tools/                 # 开发工具
 
 ~/.claude/commands/        # 用户级命令 (前缀 /user:)
 ```
@@ -41,7 +46,7 @@
 ---
 description: 命令描述
 argument-hint: [参数格式]
-allowed-tools: Bash(*), Edit(*)
+allowed-tools: Bash(*), Edit(*), Read(*)
 model: claude-3-5-haiku-20241022
 ---
 
@@ -49,800 +54,1723 @@ model: claude-3-5-haiku-20241022
 命令内容，支持 $ARGUMENTS 参数占位符
 
 ## 执行步骤
-1. 步骤一
-2. 步骤二
+1. 检查项目环境
+2. 执行核心功能
+3. 验证结果
 
-!`bash命令示例`
-@文件引用示例
+!`命令示例`
+@配置文件引用
 ```
 
-## 🔧 20个推荐自定义命令
+## 📱 移动端开发命令 (6个)
 
-### 🚀 开发效率类 (5个)
-
-#### 1. 性能优化命令 (`dev/optimize.md`)
+### 1. React Native 项目初始化 (`mobile/rn-init.md`)
 ```markdown
 ---
-description: 分析代码性能并提供优化建议
-argument-hint: [文件路径]
+description: 快速初始化React Native项目并配置开发环境
+argument-hint: [项目名称]
+allowed-tools: Bash(*), Write(*), Edit(*)
 ---
 
-# 性能优化分析
+# 🚀 React Native 项目初始化
 
-请分析 $ARGUMENTS 的性能，并提供：
-
-1. **性能瓶颈识别**
-   - 找出执行时间较长的代码段
-   - 分析时间复杂度和空间复杂度
-
-2. **优化建议**
-   - 提供3-5个具体的优化方案
-   - 评估优化后的性能提升
-
-3. **代码重构**
-   - 如需要，提供重构后的代码
-   - 保证功能不变的前提下提升性能
-```
-
-**使用方式**: `/project:dev:optimize src/utils.js`
-
-#### 2. 错误修复命令 (`dev/fix.md`)
-```markdown
----
-description: 智能诊断并修复代码错误
-argument-hint: [错误描述或文件]
----
-
-# 🔍 错误诊断与修复
-
-针对 $ARGUMENTS，请执行：
-
-## 诊断步骤
-1. 分析错误类型和原因
-2. 定位具体问题代码
-3. 评估影响范围
-
-## 修复方案
-1. 提供修复代码
-2. 解释修复原理
-3. 预防类似问题的建议
-
-## 测试验证
-- 提供测试用例
-- 确保修复不引入新问题
-```
-
-**使用方式**: `/project:dev:fix LoginError`
-
-#### 3. 代码审查命令 (`dev/review.md`)
-```markdown
----
-description: 全面的代码审查和质量评估
-argument-hint: [文件或目录路径]
----
-
-# 📋 代码审查报告
-
-对 $ARGUMENTS 进行全面审查：
-
-## 代码质量评估
-- **可读性**：变量命名、注释、结构
-- **maintainability**：代码复用性、模块化
-- **性能**：算法效率、资源使用
-
-## 安全性检查
-- 输入验证
-- 数据泄露风险
-- 访问控制
-
-## 改进建议
-- 优先级排序的改进点
-- 具体的重构建议
-- 最佳实践推荐
-```
-
-**使用方式**: `/project:dev:review src/components/`
-
-#### 4. 任务分解命令 (`dev/task.md`)
-```markdown
----
-description: 将大任务分解为可执行的小任务
-argument-hint: [任务描述]
----
-
-# 📋 任务分解
-
-将 $ARGUMENTS 分解为可执行任务：
-
-## 任务分析
-1. 理解核心需求
-2. 识别依赖关系
-3. 评估复杂度
-
-## 分解结果
-- **阶段1**：基础准备
-- **阶段2**：核心开发
-- **阶段3**：测试验证
-- **阶段4**：部署发布
-
-## 时间评估
-- 各阶段预期工期
-- 关键路径识别
-- 风险点标记
-
-## 执行计划
-- 优先级排序
-- 里程碑设定
-- 验收标准
-```
-
-**使用方式**: `/project:dev:task 实现用户认证功能`
-
-#### 5. 架构分析命令 (`dev/arch.md`)
-```markdown
----
-description: 分析项目架构并提供改进建议
-argument-hint: [项目路径]
----
-
-# 🏛️ 架构分析
-
-对 $ARGUMENTS 进行架构分析：
-
-## 当前架构评估
-- 目录结构分析
-- 模块依赖关系
-- 设计模式识别
-
-## 技术栈评估
-- 框架和库使用情况
-- 技术选型合理性
-- 版本兼容性检查
-
-## 改进建议
-- 架构优化方案
-- 可扩展性增强
-- 性能提升策略
-
-## 迁移计划
-- 渐进式改进步骤
-- 风险评估与缓解
-- 实施时间线
-```
-
-**使用方式**: `/project:dev:arch ./`
-
-### 🌿 Git工作流类 (3个)
-
-#### 6. 智能提交命令 (`git/commit.md`)
-```markdown
----
-description: 生成规范的Git提交信息并提交
-allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*)
-argument-hint: [提交类型]
----
-
-# 📤 智能Git提交
-
-执行规范化Git提交流程：
-
-## 1. 检查状态
-!`git status`
-
-## 2. 生成提交信息
-根据变更内容生成符合约定式提交的消息：
-- feat: 新功能
-- fix: 错误修复
-- docs: 文档更新
-- style: 代码格式
-- refactor: 重构
-- test: 测试相关
-
-## 3. 执行提交
-使用生成的提交信息执行 `git add .` 和 `git commit`
-
-提交类型：$ARGUMENTS
-```
-
-**使用方式**: `/project:git:commit feat`
-
-#### 7. 分支管理命令 (`git/branch.md`)
-```markdown
----
-description: 智能分支创建和切换
-allowed-tools: Bash(git branch:*), Bash(git checkout:*)
-argument-hint: [分支名称]
----
-
-# 🌿 分支管理
-
-智能管理Git分支：
-
-## 当前分支状态
-!`git branch -a`
-
-## 分支操作
-- 创建新分支：$ARGUMENTS
-- 检查分支命名规范
-- 自动设置上游分支
-
-## 工作流建议
-- feature/功能名 - 新功能开发
-- hotfix/问题描述 - 紧急修复
-- release/版本号 - 发布准备
-```
-
-**使用方式**: `/project:git:branch feature/new-auth`
-
-#### 8. 发布准备命令 (`git/release.md`)
-```markdown
----
-description: 准备项目发布版本
-allowed-tools: Bash(git log:*), Bash(git tag:*)
----
-
-# 🚀 发布准备
-
-准备版本发布：
-
-## 1. 版本检查
-- 检查当前版本号
-- 生成版本更新日志
-- 验证所有测试通过
-
-## 2. 文档更新
-- 更新 CHANGELOG.md
-- 检查 README.md
-- 确认API文档最新
-
-## 3. 构建验证
-- 执行完整构建流程
-- 运行所有测试
-- 检查构建产物
-
-版本号：$ARGUMENTS
-```
-
-**使用方式**: `/project:git:release v1.2.0`
-
-### 🧪 测试质量类 (2个)
-
-#### 9. 测试生成命令 (`test/test.md`)
-```markdown
----
-description: 自动生成单元测试和集成测试
-argument-hint: [测试目标]
----
-
-# 🧪 测试自动生成
-
-为 $ARGUMENTS 生成完整测试：
-
-## 单元测试
-- 正常流程测试
-- 边界条件测试
-- 异常情况测试
-- Mock对象使用
-
-## 集成测试
-- API接口测试
-- 数据库交互测试
-- 第三方服务集成
-
-## 测试数据
-- 创建测试数据集
-- 设置和清理步骤
-- 数据隔离策略
-
-## 覆盖率目标
-- 代码覆盖率分析
-- 覆盖率改进建议
-- 测试质量评估
-```
-
-**使用方式**: `/project:test:test src/services/api.js`
-
-#### 10. 测试运行命令 (`test/runtest.md`)
-```markdown
----
-description: 运行测试并生成详细报告
-allowed-tools: Bash(npm test:*), Bash(pytest:*), Bash(mvn test:*)
----
-
-# 🏃‍♂️ 测试执行
-
-执行完整测试流程：
+为 $ARGUMENTS 创建完整的RN项目：
 
 ## 1. 环境检查
-- 测试依赖确认
-- 配置文件验证
-- 数据库连接测试
-
-## 2. 测试执行
-- 运行所有测试套件
-- 并行执行优化
-- 失败测试重试
-
-## 3. 结果分析
-- 测试通过率统计
-- 失败用例详细分析
-- 性能基准对比
-
-## 4. 报告生成
-- HTML测试报告
-- 覆盖率报告
-- 趋势分析图表
-
-测试范围：$ARGUMENTS
-```
-
-**使用方式**: `/project:test:runtest integration`
-
-### 🔒 安全检查类 (2个)
-
-#### 11. 安全扫描命令 (`security/security.md`)
-```markdown
----
-description: 全面的安全漏洞扫描和分析
-argument-hint: [扫描范围]
----
-
-# 🔒 安全扫描
-
-对 $ARGUMENTS 执行安全检查：
-
-## 代码安全审计
-- SQL注入风险检查
-- XSS漏洞扫描
-- CSRF防护验证
-- 输入验证分析
-
-## 依赖安全检查
-- 第三方库漏洞扫描
-- 版本安全性评估
-- 许可证合规检查
-
-## 配置安全审核
-- 敏感信息泄露检查
-- 访问控制配置
-- 加密实现验证
-
-## 安全加固建议
-- 漏洞修复方案
-- 安全最佳实践
-- 防护措施推荐
-```
-
-**使用方式**: `/project:security:security ./`
-
-#### 12. 代码扫描命令 (`security/scan.md`)
-```markdown
----
-description: 静态代码分析和质量检查
-argument-hint: [文件或目录]
----
-
-# 🔍 代码质量扫描
-
-对 $ARGUMENTS 进行静态分析：
-
-## 代码规范检查
-- 编码风格一致性
-- 命名规范遵循
-- 注释完整性
-
-## 潜在问题检测
-- 死代码识别
-- 未使用变量/方法
-- 循环复杂度分析
-- 重复代码检测
-
-## 性能分析
-- 算法复杂度评估
-- 内存使用优化点
-- 并发安全问题
-
-## 改进建议
-- 优先级排序的问题列表
-- 具体修复建议
-- 重构推荐方案
-```
-
-**使用方式**: `/project:security:scan src/`
-
-### 📚 文档生成类 (2个)
-
-#### 13. 文档生成命令 (`docs/doc.md`)
-```markdown
----
-description: 为代码自动生成详细文档
-argument-hint: [文件路径]
----
-
-# 📚 自动文档生成
-
-为 $ARGUMENTS 生成完整文档：
-
-## API 文档
-- 函数/方法签名
-- 参数说明
-- 返回值描述
-- 使用示例
-
-## 代码注释
-- 添加必要的行内注释
-- 复杂逻辑的解释
-- 注意事项和限制
-
-## README 更新
-- 功能概述
-- 安装和使用方法
-- 配置选项说明
-```
-
-**使用方式**: `/project:docs:doc src/utils/helper.js`
-
-#### 14. 注释优化命令 (`docs/comment.md`)
-```markdown
----
-description: 优化代码注释质量
-argument-hint: [文件路径]
----
-
-# 💬 注释优化
-
-对 $ARGUMENTS 的注释进行优化：
-
-## 注释规范化
-- 统一注释风格
-- 补充缺失注释
-- 移除冗余注释
-
-## 内容优化
-- 解释"为什么"而不只是"是什么"
-- 添加复杂逻辑的思路说明
-- 标注重要的设计决策
-
-## 多语言支持
-- 提供中英文注释版本
-- 保持注释的专业性和准确性
-```
-
-**使用方式**: `/project:docs:comment src/main.js`
-
-### 📊 数据分析类 (2个)
-
-#### 15. 日志分析命令 (`data/log.md`)
-```markdown
----
-description: 智能分析应用日志
-argument-hint: [日志文件路径]
----
-
-# 📊 日志分析
-
-分析 $ARGUMENTS 的日志文件：
-
-## 日志概览
-- 总记录数统计
-- 时间范围分析
-- 日志级别分布
-
-## 异常检测
-- 错误和异常统计
-- 异常模式识别
-- 频繁异常分析
-
-## 性能分析
-- 响应时间统计
-- 资源使用趋势
-- 性能瓶颈识别
-
-## 可视化报告
-- 时间序列图表
-- 异常分布图
-- 性能趋势分析
-
-## 优化建议
-- 日志配置优化
-- 监控告警设置
-- 问题解决方案
-```
-
-**使用方式**: `/project:data:log logs/app.log`
-
-#### 16. 数据库优化命令 (`data/db.md`)
-```markdown
----
-description: 数据库性能分析和优化
-argument-hint: [数据库连接或表名]
----
-
-# 🗄️ 数据库优化
-
-优化 $ARGUMENTS 的数据库性能：
-
-## 查询分析
-- 慢查询识别
-- 执行计划分析
-- 索引使用情况
-
-## 结构优化
-- 表结构设计审查
-- 索引优化建议
-- 分区策略评估
-
-## 性能调优
-- 查询重写建议
-- 参数配置优化
-- 缓存策略设计
-
-## 监控设置
-- 关键指标监控
-- 告警阈值设定
-- 性能基线建立
-```
-
-**使用方式**: `/project:data:db user_table`
-
-### 🌐 Web开发类 (2个)
-
-#### 17. 前端组件命令 (`web/component.md`)
-```markdown
----
-description: 生成前端组件代码和文档
-argument-hint: [组件名称]
----
-
-# ⚛️ 前端组件生成
-
-创建 $ARGUMENTS 组件：
-
-## 组件结构
-- React/Vue/Angular组件代码
-- 样式文件(CSS/SCSS)
-- 类型定义(TypeScript)
-
-## 功能实现
-- Props接口定义
-- 状态管理逻辑
-- 事件处理方法
-- 生命周期钩子
-
-## 测试文件
-- 单元测试用例
-- 快照测试
-- 交互测试
-
-## 文档示例
-- Storybook故事
-- 使用示例代码
-- Props说明表格
-
-## 最佳实践
-- 可访问性支持
-- 性能优化
-- 响应式设计
-```
-
-**使用方式**: `/project:web:component UserCard`
-
-#### 18. API接口命令 (`web/api.md`)
-```markdown
----
-description: 生成RESTful API接口代码
-argument-hint: [接口名称]
----
-
-# 🔌 API接口生成
-
-创建 $ARGUMENTS 接口：
-
-## 接口定义
-- 路由配置
-- 请求/响应模型
-- 参数验证规则
-- 错误处理逻辑
-
-## 数据层
-- 数据模型定义
-- 数据库操作
-- 缓存策略
-- 事务管理
-
-## 安全实现
-- 身份认证
-- 权限验证
-- 输入校验
-- 输出过滤
-
-## 文档生成
-- OpenAPI规范
-- 接口文档
-- 使用示例
-- 测试用例
-
-## 性能优化
-- 查询优化
-- 响应压缩
-- 并发控制
-- 监控指标
-```
-
-**使用方式**: `/project:web:api /users`
-
-### 🚀 DevOps类 (2个)
-
-#### 19. 部署命令 (`devops/deploy.md`)
-```markdown
----
-description: 自动化部署流程
-allowed-tools: Bash(docker:*), Bash(kubectl:*)
-argument-hint: [环境名称]
----
-
-# 🚀 自动化部署
-
-部署到 $ARGUMENTS 环境：
-
-## 预部署检查
-- 代码质量验证
-- 测试覆盖率检查
-- 安全扫描通过
-- 依赖兼容性确认
-
-## 构建流程
-- 应用打包构建
-- Docker镜像创建
-- 镜像安全扫描
-- 制品库推送
-
-## 部署执行
-- 环境配置更新
-- 服务滚动更新
-- 健康检查验证
-- 流量切换控制
-
-## 部署验证
-- 功能测试验证
-- 性能基准检查
-- 监控告警设置
-- 回滚方案准备
-
-## 通知报告
-- 部署结果通知
-- 变更记录更新
-- 运维文档同步
-```
-
-**使用方式**: `/project:devops:deploy production`
-
-#### 20. 监控设置命令 (`devops/monitor.md`)
-```markdown
----
-description: 设置应用监控和告警
-argument-hint: [服务名称]
----
-
-# 📈 监控告警设置
-
-为 $ARGUMENTS 设置完整监控：
-
-## 基础监控
-- 系统资源监控(CPU/内存/磁盘)
-- 应用性能指标(响应时间/吞吐量)
-- 错误率和可用性监控
-- 业务关键指标跟踪
-
-## 日志监控
-- 应用日志收集
-- 错误日志聚合
-- 关键事件跟踪
-- 日志告警规则
-
-## 告警配置
-- 阈值告警设置
-- 异常检测规则
-- 通知渠道配置
-- 升级策略定义
-
-## 仪表板
-- 实时监控大屏
-- 趋势分析图表
-- 性能对比报告
-- 故障影响分析
-
-## 自动化响应
-- 自动扩缩容
-- 故障自愈机制
-- 预警处理流程
-- 应急响应预案
-```
-
-**使用方式**: `/project:devops:monitor user-service`
-
-## 🛠️ 配置指南
-
-### 快速部署
+!`node --version && npm --version`
+!`npx react-native doctor`
+
+## 2. 项目创建
+- 使用最新RN模板创建项目
+- 配置TypeScript支持
+- 设置导航和状态管理
+
+## 3. 开发环境配置
+- Android开发环境设置
+- iOS开发环境配置
+- 调试工具配置
+
+## 4. 依赖安装
 ```bash
-# 1. 创建命令目录结构
-mkdir -p .claude/commands/{dev,git,test,deploy,docs,security,data,web,devops}
-mkdir -p ~/.claude/commands
-
-# 2. 复制命令文件到对应目录
-# 3. 在 Claude Code 中使用 /project:分类:命令名 调用
+npx react-native init $ARGUMENTS --template react-native-template-typescript
+cd $ARGUMENTS
+npm install @react-navigation/native @react-navigation/stack
+npm install react-native-reanimated react-native-gesture-handler
 ```
 
-### 命令组织建议
-```
-.claude/commands/
-├── dev/           # 开发相关 - 优化、修复、审查、任务、架构
-├── git/           # Git工作流 - 提交、分支、发布
-├── test/          # 测试相关 - 生成测试、运行测试
-├── security/      # 安全检查 - 漏洞扫描、代码扫描
-├── docs/          # 文档生成 - API文档、注释优化
-├── data/          # 数据分析 - 日志分析、数据库优化
-├── web/           # Web开发 - 组件生成、API接口
-└── devops/        # 运维部署 - 自动部署、监控设置
+## 5. 项目结构优化
+- 创建标准目录结构
+- 配置路径别名
+- 设置代码规范
+
+项目名称：$ARGUMENTS
 ```
 
-## 🎯 使用技巧
+**使用方式**: `/project:mobile:rn-init MyAwesomeApp`
 
-### 1. 参数化命令
-- 使用 `$ARGUMENTS` 接收用户输入
-- 支持位置参数 `$1`, `$2`, `$3`
-- 提供默认值 `${1:-默认值}`
-
-### 2. Bash集成
-- `!`bash命令`` - 执行并显示结果
-- `@文件路径` - 读取文件内容
-- 条件执行和管道操作
-
-### 3. 工具权限控制
-```yaml
+### 2. Android Jetpack Compose 组件生成 (`mobile/compose.md`)
+```markdown
 ---
-allowed-tools:
-  - "Bash(git *)"
-  - "Edit(*)"
-disabled-tools:
-  - "WebSearch"
+description: 生成Android Jetpack Compose组件代码
+argument-hint: [组件名称]
+allowed-tools: Write(*), Edit(*)
 ---
+
+# 🎨 Jetpack Compose 组件生成
+
+创建 $ARGUMENTS Compose组件：
+
+## 1. 组件结构
+- Composable函数定义
+- 状态管理设置
+- UI预览配置
+
+## 2. 代码生成
+```kotlin
+@Composable
+fun $ARGUMENTS(
+    modifier: Modifier = Modifier,
+    // 参数定义
+) {
+    // 组件实现
+    Surface(
+        modifier = modifier,
+        // 组件内容
+    ) {
+        // UI结构
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ${ARGUMENTS}Preview() {
+    MyAppTheme {
+        $ARGUMENTS()
+    }
+}
 ```
 
-### 4. 模型指定
-```yaml
----
-model: "claude-3-5-haiku-20241022"
----
+## 3. 最佳实践
+- Material Design 3规范
+- 响应式布局设计
+- 可访问性支持
+- 性能优化建议
+
+组件名称：$ARGUMENTS
 ```
 
-## 🔧 故障排除
+**使用方式**: `/project:mobile:compose UserProfileCard`
 
-### 常见问题
-1. **命令无法识别** - 检查文件路径和 `.claude/commands` 目录
-2. **参数传递失败** - 验证 `$ARGUMENTS` 语法
-3. **权限不足** - 确认 `allowed-tools` 配置
+### 3. iOS SwiftUI 视图生成 (`mobile/swiftui.md`)
+```markdown
+---
+description: 生成iOS SwiftUI视图组件
+argument-hint: [视图名称]
+allowed-tools: Write(*), Edit(*)
+---
 
-### 调试方法
-- 使用简单命令测试基础功能
-- 逐步增加复杂度和功能
-- 查看 Claude Code 执行日志
+# 🍎 SwiftUI 视图生成
 
-## 📈 最佳实践
+创建 $ARGUMENTS SwiftUI视图：
 
-1. **命令设计原则**
-   - 单一职责，功能聚焦
-   - 参数化设计，提高复用性
-   - 清晰的文档和示例
+## 1. 视图结构
+```swift
+import SwiftUI
 
-2. **团队协作**
-   - 统一命名规范
-   - 版本控制管理
-   - 定期审查更新
+struct $ARGUMENTS: View {
+    // 状态属性
+    @State private var isLoading = false
 
-3. **性能优化**
-   - 避免重复操作
-   - 合理使用缓存
-   - 并行处理优化
+    var body: some View {
+        // 视图内容
+        VStack {
+            // UI组件
+        }
+        .navigationTitle("$ARGUMENTS")
+        .padding()
+    }
+}
 
-通过合理配置和使用这些自定义命令，可以显著提升 Claude Code 的开发效率和用户体验！
+struct ${ARGUMENTS}_Previews: PreviewProvider {
+    static var previews: some View {
+        $ARGUMENTS()
+    }
+}
+```
+
+## 2. 功能特性
+- 声明式UI设计
+- 状态绑定和数据流
+- 动画和过渡效果
+- 导航和路由处理
+
+## 3. 平台适配
+- iPhone和iPad适配
+- 深色模式支持
+- 动态类型支持
+- VoiceOver可访问性
+
+视图名称：$ARGUMENTS
+```
+
+**使用方式**: `/project:mobile:swiftui ProductDetailView`
+
+### 4. Flutter Widget 开发 (`mobile/flutter.md`)
+```markdown
+---
+description: 创建Flutter Widget组件
+argument-hint: [Widget名称]
+allowed-tools: Write(*), Edit(*)
+---
+
+# 🎯 Flutter Widget 开发
+
+构建 $ARGUMENTS Flutter Widget：
+
+## 1. Widget类型选择
+- StatelessWidget（无状态）
+- StatefulWidget（有状态）
+- 自定义绘制Widget
+
+## 2. 代码生成
+```dart
+class $ARGUMENTS extends StatefulWidget {
+  const $ARGUMENTS({Key? key}) : super(key: key);
+
+  @override
+  State<$ARGUMENTS> createState() => _${ARGUMENTS}State();
+}
+
+class _${ARGUMENTS}State extends State<$ARGUMENTS> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // Widget实现
+      child: Column(
+        children: [
+          // UI组件
+        ],
+      ),
+    );
+  }
+}
+```
+
+## 3. 特性实现
+- 响应式布局
+- 主题适配
+- 状态管理（Provider/Bloc）
+- 手势处理
+
+## 4. 测试配置
+- Widget测试
+- 集成测试
+- 性能测试
+
+Widget名称：$ARGUMENTS
+```
+
+**使用方式**: `/project:mobile:flutter CustomAnimatedButton`
+
+### 5. 移动端API集成 (`mobile/api.md`)
+```markdown
+---
+description: 生成移动端API请求和数据处理代码
+argument-hint: [API名称]
+allowed-tools: Write(*), Edit(*)
+---
+
+# 🔌 移动端API集成
+
+为 $ARGUMENTS 创建API集成：
+
+## 1. 网络请求层
+```typescript
+// React Native / TypeScript
+interface ${ARGUMENTS}Response {
+  // 响应类型定义
+}
+
+class ${ARGUMENTS}Service {
+  private baseURL = 'https://api.example.com';
+
+  async get$ARGUMENTS(): Promise<${ARGUMENTS}Response> {
+    try {
+      const response = await fetch(`${this.baseURL}/$ARGUMENTS`);
+      return response.json();
+    } catch (error) {
+      throw new Error(`Failed to fetch $ARGUMENTS: ${error}`);
+    }
+  }
+}
+```
+
+## 2. 状态管理
+- Redux Toolkit配置
+- Context API使用
+- 错误处理机制
+- 缓存策略
+
+## 3. 安全考虑
+- HTTPS强制使用
+- Certificate Pinning
+- Token安全存储
+- 请求加密
+
+## 4. 性能优化
+- 请求缓存
+- 分页加载
+- 图片懒加载
+- 网络状态监听
+
+API名称：$ARGUMENTS
+```
+
+**使用方式**: `/project:mobile:api UserAuthentication`
+
+### 6. 移动端测试套件 (`mobile/test.md`)
+```markdown
+---
+description: 生成移动端自动化测试代码
+argument-hint: [测试目标]
+allowed-tools: Write(*), Bash(*)
+---
+
+# 🧪 移动端测试套件
+
+为 $ARGUMENTS 创建测试套件：
+
+## 1. 单元测试
+```javascript
+// Jest + React Native Testing Library
+import { render, fireEvent } from '@testing-library/react-native';
+import $ARGUMENTS from '../$ARGUMENTS';
+
+describe('$ARGUMENTS', () => {
+  test('renders correctly', () => {
+    const { getByText } = render(<$ARGUMENTS />);
+    // 测试断言
+  });
+
+  test('handles user interaction', () => {
+    const { getByTestId } = render(<$ARGUMENTS />);
+    fireEvent.press(getByTestId('button'));
+    // 验证行为
+  });
+});
+```
+
+## 2. 集成测试
+- API集成测试
+- 导航流程测试
+- 数据持久化测试
+
+## 3. UI测试
+- Detox (React Native)
+- Espresso (Android)
+- XCUITest (iOS)
+
+## 4. 性能测试
+- 启动时间测试
+- 内存使用监控
+- CPU使用率检查
+- 电池消耗评估
+
+测试目标：$ARGUMENTS
+```
+
+**使用方式**: `/project:mobile:test LoginFlow`
+
+## 🌸 鸿蒙开发命令 (4个)
+
+### 7. HarmonyOS 应用初始化 (`harmony/init.md`)
+```markdown
+---
+description: 初始化HarmonyOS应用项目
+argument-hint: [应用名称]
+allowed-tools: Bash(*), Write(*), Edit(*)
+---
+
+# 🌸 HarmonyOS 应用初始化
+
+创建 $ARGUMENTS 鸿蒙应用：
+
+## 1. 开发环境检查
+!`node --version`
+!`npm list @ohos/hvigor -g`
+
+## 2. 项目创建
+```bash
+# 使用DevEco Studio模板或hvigor工具
+hvigor create $ARGUMENTS --template=stage
+cd $ARGUMENTS
+npm install
+```
+
+## 3. 项目配置
+- 配置应用签名
+- 设置权限申请
+- 配置构建脚本
+
+## 4. 目录结构
+```
+src/main/
+├── ets/           # ArkTS源码
+├── resources/     # 资源文件
+└── module.json5   # 模块配置
+```
+
+## 5. 基础代码
+```typescript
+// Index.ets
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello $ARGUMENTS'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+应用名称：$ARGUMENTS
+```
+
+**使用方式**: `/project:harmony:init MyHarmonyApp`
+
+### 8. ArkTS 组件开发 (`harmony/component.md`)
+```markdown
+---
+description: 创建ArkTS自定义组件
+argument-hint: [组件名称]
+allowed-tools: Write(*), Edit(*)
+---
+
+# 🎨 ArkTS 组件开发
+
+构建 $ARGUMENTS ArkTS组件：
+
+## 1. 组件定义
+```typescript
+@Component
+export struct $ARGUMENTS {
+  // 组件属性
+  @Prop data: string = '';
+  @State isVisible: boolean = true;
+
+  build() {
+    Column() {
+      // 组件UI结构
+      if (this.isVisible) {
+        Text(this.data)
+          .fontSize(16)
+          .fontColor(Color.Black)
+          .margin(10)
+      }
+    }
+    .width('100%')
+    .height('auto')
+    .padding(12)
+  }
+}
+```
+
+## 2. 生命周期
+- aboutToAppear()
+- aboutToDisappear()
+- onPageShow()
+- onPageHide()
+
+## 3. 状态管理
+- @State 组件内部状态
+- @Prop 父组件传递属性
+- @Link 双向数据绑定
+- @Provide/@Consume 跨组件通信
+
+## 4. 事件处理
+- 点击事件
+- 触摸事件
+- 滑动手势
+- 长按操作
+
+## 5. 动画效果
+```typescript
+.animation({
+  duration: 300,
+  curve: Curve.EaseInOut
+})
+```
+
+组件名称：$ARGUMENTS
+```
+
+**使用方式**: `/project:harmony:component UserCard`
+
+### 9. 鸿蒙数据管理 (`harmony/data.md`)
+```markdown
+---
+description: 实现鸿蒙应用数据存储和管理
+argument-hint: [数据模型名称]
+allowed-tools: Write(*), Edit(*)
+---
+
+# 💾 鸿蒙数据管理
+
+为 $ARGUMENTS 实现数据管理：
+
+## 1. 数据模型定义
+```typescript
+// $ARGUMENTS.ets
+export class $ARGUMENTS {
+  id: string;
+  name: string;
+  createTime: number;
+
+  constructor(id: string, name: string) {
+    this.id = id;
+    this.name = name;
+    this.createTime = Date.now();
+  }
+}
+```
+
+## 2. 首选项存储
+```typescript
+import preferences from '@ohos.data.preferences';
+
+class ${ARGUMENTS}Storage {
+  private static instance: ${ARGUMENTS}Storage;
+  private pref: preferences.Preferences | null = null;
+
+  static getInstance(): ${ARGUMENTS}Storage {
+    if (!${ARGUMENTS}Storage.instance) {
+      ${ARGUMENTS}Storage.instance = new ${ARGUMENTS}Storage();
+    }
+    return ${ARGUMENTS}Storage.instance;
+  }
+
+  async save$ARGUMENTS(data: $ARGUMENTS): Promise<void> {
+    await this.pref?.put('${ARGUMENTS}_' + data.id, JSON.stringify(data));
+    await this.pref?.flush();
+  }
+}
+```
+
+## 3. 关系型数据库
+```typescript
+import relationalStore from '@ohos.data.relationalStore';
+
+const SQL_CREATE_TABLE = `
+  CREATE TABLE IF NOT EXISTS ${ARGUMENTS} (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    createTime INTEGER
+  )
+`;
+```
+
+## 4. 分布式数据
+- 设备间数据同步
+- 分布式对象管理
+- 数据权限控制
+
+数据模型：$ARGUMENTS
+```
+
+**使用方式**: `/project:harmony:data Product`
+
+### 10. 鸿蒙服务开发 (`harmony/service.md`)
+```markdown
+---
+description: 创建鸿蒙后台服务
+argument-hint: [服务名称]
+allowed-tools: Write(*), Edit(*)
+---
+
+# ⚙️ 鸿蒙服务开发
+
+开发 $ARGUMENTS 后台服务：
+
+## 1. ServiceExtensionAbility
+```typescript
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+
+export default class ${ARGUMENTS}Service extends ServiceExtensionAbility {
+  onCreate(want: Want): void {
+    console.info(`${ARGUMENTS}Service onCreate`);
+    // 服务初始化
+  }
+
+  onRequest(want: Want, startId: number): void {
+    console.info(`${ARGUMENTS}Service onRequest`);
+    // 处理服务请求
+  }
+
+  onDestroy(): void {
+    console.info(`${ARGUMENTS}Service onDestroy`);
+    // 服务销毁清理
+  }
+}
+```
+
+## 2. 模块配置
+```json5
+// module.json5
+{
+  "extensionAbilities": [
+    {
+      "name": "${ARGUMENTS}Service",
+      "srcEntry": "./ets/services/${ARGUMENTS}Service.ts",
+      "type": "service",
+      "exported": true
+    }
+  ]
+}
+```
+
+## 3. 后台任务
+- 长时运行任务
+- 延时任务调度
+- 工作调度器
+
+## 4. 系统能力调用
+- 位置服务
+- 推送通知
+- 设备管理
+- 网络监听
+
+服务名称：$ARGUMENTS
+```
+
+**使用方式**: `/project:harmony:service LocationTracker`
+
+## 🌐 Web开发命令 (5个)
+
+### 11. 现代Web应用脚手架 (`web/app.md`)
+```markdown
+---
+description: 创建现代Web应用项目脚手架
+argument-hint: [项目名称]
+allowed-tools: Bash(*), Write(*), Edit(*)
+---
+
+# 🌐 现代Web应用脚手架
+
+构建 $ARGUMENTS Web应用：
+
+## 1. 技术栈选择
+- React 18 + TypeScript
+- Vite 构建工具
+- TailwindCSS 样式框架
+- React Router 路由管理
+
+## 2. 项目初始化
+```bash
+npm create vite@latest $ARGUMENTS -- --template react-ts
+cd $ARGUMENTS
+npm install
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+## 3. 开发工具配置
+- ESLint + Prettier
+- Husky Git hooks
+- VSCode 配置
+- 环境变量管理
+
+## 4. 项目结构
+```
+src/
+├── components/    # 组件
+├── pages/        # 页面
+├── hooks/        # 自定义Hook
+├── utils/        # 工具函数
+├── styles/       # 样式文件
+└── types/        # 类型定义
+```
+
+## 5. 核心配置
+- 路由配置
+- 状态管理设置
+- API 客户端配置
+- 主题系统
+
+项目名称：$ARGUMENTS
+```
+
+**使用方式**: `/project:web:app ModernDashboard`
+
+### 12. Vue 3 组合式API组件 (`web/vue.md`)
+```markdown
+---
+description: 创建Vue 3组合式API组件
+argument-hint: [组件名称]
+allowed-tools: Write(*), Edit(*)
+---
+
+# 🎨 Vue 3 组合式API组件
+
+开发 $ARGUMENTS Vue组件：
+
+## 1. 组件结构
+```vue
+<template>
+  <div class="${ARGUMENTS}">
+    <!-- 组件模板 -->
+    <h2>{{ title }}</h2>
+    <slot />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+
+// Props定义
+interface Props {
+  title?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  title: '$ARGUMENTS'
+})
+
+// 响应式数据
+const count = ref(0)
+const isLoading = ref(false)
+
+// 计算属性
+const displayText = computed(() => {
+  return `${props.title} - ${count.value}`
+})
+
+// 生命周期
+onMounted(() => {
+  console.log('$ARGUMENTS mounted')
+})
+
+// 方法
+const handleClick = () => {
+  count.value++
+}
+
+// 暴露给父组件
+defineExpose({
+  reset: () => count.value = 0
+})
+</script>
+
+<style scoped>
+.${ARGUMENTS} {
+  /* 组件样式 */
+}
+</style>
+```
+
+## 2. TypeScript支持
+- Props类型定义
+- Emits事件类型
+- 组合式函数类型
+
+## 3. 性能优化
+- defineAsyncComponent
+- v-memo 指令
+- keep-alive 缓存
+
+组件名称：$ARGUMENTS
+```
+
+**使用方式**: `/project:web:vue DataTable`
+
+### 13. React Hook 开发 (`web/hook.md`)
+```markdown
+---
+description: 创建自定义React Hook
+argument-hint: [Hook名称]
+allowed-tools: Write(*), Edit(*)
+---
+
+# ⚡ React Hook 开发
+
+构建 use$ARGUMENTS Hook：
+
+## 1. Hook实现
+```typescript
+import { useState, useEffect, useCallback } from 'react';
+
+interface Use${ARGUMENTS}Options {
+  // 配置选项
+  autoStart?: boolean;
+  interval?: number;
+}
+
+interface Use${ARGUMENTS}Return {
+  // 返回值类型
+  data: any;
+  loading: boolean;
+  error: Error | null;
+  refetch: () => void;
+}
+
+export function use$ARGUMENTS(
+  options: Use${ARGUMENTS}Options = {}
+): Use${ARGUMENTS}Return {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  const fetchData = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      // 数据获取逻辑
+      const result = await fetch('/api/$ARGUMENTS');
+      setData(result);
+    } catch (err) {
+      setError(err as Error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (options.autoStart) {
+      fetchData();
+    }
+  }, [fetchData, options.autoStart]);
+
+  return {
+    data,
+    loading,
+    error,
+    refetch: fetchData
+  };
+}
+```
+
+## 2. Hook测试
+```typescript
+import { renderHook, act } from '@testing-library/react';
+import { use$ARGUMENTS } from './use$ARGUMENTS';
+
+describe('use$ARGUMENTS', () => {
+  test('should fetch data correctly', async () => {
+    const { result } = renderHook(() => use$ARGUMENTS());
+
+    act(() => {
+      result.current.refetch();
+    });
+
+    // 测试断言
+  });
+});
+```
+
+## 3. 最佳实践
+- 依赖数组优化
+- 内存泄漏防护
+- 错误边界处理
+
+Hook名称：$ARGUMENTS
+```
+
+**使用方式**: `/project:web:hook useLocalStorage`
+
+### 14. Web性能优化 (`web/performance.md`)
+```markdown
+---
+description: 实施Web应用性能优化策略
+argument-hint: [优化目标]
+allowed-tools: Bash(*), Edit(*), Write(*)
+---
+
+# 🚀 Web性能优化
+
+优化 $ARGUMENTS 的性能：
+
+## 1. 构建优化
+```javascript
+// vite.config.ts
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          router: ['react-router-dom']
+        }
+      }
+    },
+    chunkSizeWarningLimit: 1000
+  },
+  plugins: [
+    // 压缩插件
+    viteCompression(),
+    // 预加载
+    preloadPlugin()
+  ]
+});
+```
+
+## 2. 代码分割
+```typescript
+// 路由懒加载
+const HomePage = lazy(() => import('./pages/Home'));
+const AboutPage = lazy(() => import('./pages/About'));
+
+// 组件懒加载
+const HeavyComponent = lazy(() =>
+  import('./components/HeavyComponent')
+);
+```
+
+## 3. 缓存策略
+- Service Worker实现
+- HTTP缓存配置
+- CDN资源优化
+- 本地存储利用
+
+## 4. 监控工具
+```bash
+# 性能分析
+npm install -D lighthouse
+npm install -D webpack-bundle-analyzer
+
+# 运行分析
+npm run build
+npm run analyze
+lighthouse http://localhost:3000 --output html
+```
+
+## 5. 优化指标
+- First Contentful Paint (FCP)
+- Largest Contentful Paint (LCP)
+- Cumulative Layout Shift (CLS)
+- Time to Interactive (TTI)
+
+优化目标：$ARGUMENTS
+```
+
+**使用方式**: `/project:web:performance CoreWebVitals`
+
+### 15. PWA开发套件 (`web/pwa.md`)
+```markdown
+---
+description: 将Web应用转换为PWA
+argument-hint: [应用名称]
+allowed-tools: Write(*), Edit(*)
+---
+
+# 📱 PWA开发套件
+
+将 $ARGUMENTS 转换为PWA：
+
+## 1. Manifest配置
+```json
+{
+  "name": "$ARGUMENTS",
+  "short_name": "$ARGUMENTS",
+  "description": "A Progressive Web App",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+```
+
+## 2. Service Worker
+```javascript
+// sw.js
+const CACHE_NAME = '${ARGUMENTS}-v1';
+const urlsToCache = [
+  '/',
+  '/static/css/main.css',
+  '/static/js/main.js'
+];
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(urlsToCache))
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request)
+      .then((response) => {
+        return response || fetch(event.request);
+      }
+    )
+  );
+});
+```
+
+## 3. 离线功能
+- 缓存策略实现
+- 离线页面设计
+- 数据同步机制
+- 后台同步
+
+## 4. 推送通知
+```javascript
+// 推送订阅
+const subscription = await registration.pushManager.subscribe({
+  userVisibleOnly: true,
+  applicationServerKey: publicKey
+});
+
+// 通知显示
+self.addEventListener('push', (event) => {
+  const options = {
+    body: event.data.text(),
+    icon: '/icons/icon-192x192.png',
+    badge: '/icons/badge.png'
+  };
+
+  event.waitUntil(
+    self.registration.showNotification('$ARGUMENTS', options)
+  );
+});
+```
+
+应用名称：$ARGUMENTS
+```
+
+**使用方式**: `/project:web:pwa MyProgressiveApp`
+
+## 📲 H5开发命令 (3个)
+
+### 16. 移动端H5应用 (`h5/mobile.md`)
+```markdown
+---
+description: 创建移动端优化的H5应用
+argument-hint: [应用名称]
+allowed-tools: Write(*), Edit(*), Bash(*)
+---
+
+# 📲 移动端H5应用
+
+开发 $ARGUMENTS 移动端H5应用：
+
+## 1. 移动端适配
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>$ARGUMENTS</title>
+</head>
+```
+
+## 2. 触摸事件处理
+```javascript
+// 移动端手势库
+import { createGesture } from '@ionic/core';
+
+class TouchHandler {
+  constructor(element) {
+    this.setupGestures(element);
+  }
+
+  setupGestures(element) {
+    // 滑动手势
+    const swipeGesture = createGesture({
+      el: element,
+      threshold: 15,
+      onMove: (ev) => this.onSwipe(ev),
+      gestureName: 'swipe'
+    });
+
+    swipeGesture.enable();
+  }
+
+  onSwipe(event) {
+    const deltaX = event.deltaX;
+    const deltaY = event.deltaY;
+    // 处理滑动逻辑
+  }
+}
+```
+
+## 3. 性能优化
+```css
+/* 硬件加速 */
+.accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* 触摸优化 */
+.touch-element {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 字体优化 */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+```
+
+## 4. 兼容性处理
+- iOS Safari适配
+- Android浏览器兼容
+- 微信内置浏览器优化
+- 各种WebView适配
+
+## 5. 调试工具
+```javascript
+// vConsole移动端调试
+import VConsole from 'vconsole';
+
+if (process.env.NODE_ENV === 'development') {
+  new VConsole();
+}
+
+// 性能监控
+const observer = new PerformanceObserver((list) => {
+  list.getEntries().forEach((entry) => {
+    console.log('Performance:', entry);
+  });
+});
+observer.observe({entryTypes: ['measure', 'navigation']});
+```
+
+应用名称：$ARGUMENTS
+```
+
+**使用方式**: `/project:h5:mobile ShoppingMall`
+
+### 17. 微信小程序H5 (`h5/wechat.md`)
+```markdown
+---
+description: 开发微信生态H5应用
+argument-hint: [应用名称]
+allowed-tools: Write(*), Edit(*), Bash(*)
+---
+
+# 💬 微信小程序H5
+
+构建 $ARGUMENTS 微信H5应用：
+
+## 1. 微信JS-SDK集成
+```javascript
+// 微信配置
+import wx from 'weixin-js-sdk';
+
+class WeixinHelper {
+  constructor() {
+    this.config = {
+      debug: false,
+      appId: process.env.WECHAT_APP_ID,
+      timestamp: '',
+      nonceStr: '',
+      signature: '',
+      jsApiList: [
+        'chooseImage',
+        'uploadImage',
+        'getLocation',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage'
+      ]
+    };
+  }
+
+  async init() {
+    // 获取签名
+    const signature = await this.getSignature();
+    this.config.timestamp = signature.timestamp;
+    this.config.nonceStr = signature.nonceStr;
+    this.config.signature = signature.signature;
+
+    wx.config(this.config);
+
+    return new Promise((resolve, reject) => {
+      wx.ready(() => resolve(wx));
+      wx.error((err) => reject(err));
+    });
+  }
+
+  shareToTimeline(title, link, imgUrl) {
+    wx.onMenuShareTimeline({
+      title: title,
+      link: link,
+      imgUrl: imgUrl
+    });
+  }
+}
+```
+
+## 2. 微信支付集成
+```javascript
+class WeixinPay {
+  async pay(orderInfo) {
+    const payData = await this.getPayParams(orderInfo);
+
+    return new Promise((resolve, reject) => {
+      wx.chooseWXPay({
+        timestamp: payData.timestamp,
+        nonceStr: payData.nonceStr,
+        package: payData.package,
+        signType: payData.signType,
+        paySign: payData.paySign,
+        success: (res) => resolve(res),
+        fail: (err) => reject(err)
+      });
+    });
+  }
+}
+```
+
+## 3. 授权登录
+```javascript
+class WeixinAuth {
+  getAuthUrl() {
+    const params = new URLSearchParams({
+      appid: process.env.WECHAT_APP_ID,
+      redirect_uri: encodeURIComponent(window.location.href),
+      response_type: 'code',
+      scope: 'snsapi_userinfo',
+      state: 'STATE'
+    });
+
+    return `https://open.weixin.qq.com/connect/oauth2/authorize?${params}#wechat_redirect`;
+  }
+
+  async getUserInfo(code) {
+    const response = await fetch('/api/wechat/userinfo', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code })
+    });
+
+    return response.json();
+  }
+}
+```
+
+## 4. 小程序跳转
+```javascript
+// 跳转到小程序
+wx.miniProgram.navigateTo({
+  url: '/pages/index?param=value'
+});
+
+// 返回小程序
+wx.miniProgram.navigateBack();
+```
+
+应用名称：$ARGUMENTS
+```
+
+**使用方式**: `/project:h5:wechat EcommerceStore`
+
+### 18. H5游戏开发 (`h5/game.md`)
+```markdown
+---
+description: 创建H5游戏项目
+argument-hint: [游戏名称]
+allowed-tools: Write(*), Edit(*), Bash(*)
+---
+
+# 🎮 H5游戏开发
+
+开发 $ARGUMENTS H5游戏：
+
+## 1. 游戏引擎选择
+```javascript
+// Phaser 3游戏引擎
+import Phaser from 'phaser';
+
+class GameScene extends Phaser.Scene {
+  constructor() {
+    super({ key: '${ARGUMENTS}Scene' });
+  }
+
+  preload() {
+    // 加载游戏资源
+    this.load.image('player', 'assets/player.png');
+    this.load.image('enemy', 'assets/enemy.png');
+    this.load.audio('bgm', 'assets/background.mp3');
+  }
+
+  create() {
+    // 创建游戏对象
+    this.player = this.add.sprite(400, 300, 'player');
+    this.enemies = this.add.group();
+
+    // 设置物理效果
+    this.physics.add.collider(this.player, this.enemies, this.hitEnemy, null, this);
+
+    // 输入控制
+    this.cursors = this.input.keyboard.createCursorKeys();
+  }
+
+  update() {
+    // 游戏循环更新
+    this.handleInput();
+    this.updateEnemies();
+  }
+
+  handleInput() {
+    if (this.cursors.left.isDown) {
+      this.player.x -= 5;
+    }
+    if (this.cursors.right.isDown) {
+      this.player.x += 5;
+    }
+  }
+}
+
+// 游戏配置
+const config = {
+  type: Phaser.AUTO,
+  width: 800,
+  height: 600,
+  physics: {
+    default: 'arcade',
+    arcade: {
+      gravity: { y: 300 },
+      debug: false
+    }
+  },
+  scene: GameScene
+};
+
+const game = new Phaser.Game(config);
+```
+
+## 2. 移动端适配
+```javascript
+// 响应式游戏布局
+class ResponsiveGame {
+  constructor() {
+    this.setupResize();
+    this.setupTouch();
+  }
+
+  setupResize() {
+    window.addEventListener('resize', () => {
+      this.resizeGame();
+    });
+  }
+
+  setupTouch() {
+    // 虚拟手柄
+    this.virtualGamepad = new VirtualGamepad();
+  }
+
+  resizeGame() {
+    const canvas = document.querySelector('canvas');
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    // 计算缩放比例
+    const scale = Math.min(windowWidth / 800, windowHeight / 600);
+    canvas.style.transform = `scale(${scale})`;
+  }
+}
+```
+
+## 3. 性能优化
+- 对象池管理
+- 纹理图集优化
+- 音频压缩
+- 帧率控制
+
+## 4. 发布配置
+```javascript
+// 构建优化
+const gameConfig = {
+  // 生产环境配置
+  physics: {
+    default: 'arcade',
+    arcade: {
+      debug: false // 关闭调试模式
+    }
+  },
+  // 资源预加载
+  preloader: {
+    showProgressBar: true,
+    progressBarColor: '#ff6b6b'
+  }
+};
+```
+
+游戏名称：$ARGUMENTS
+```
+
+**使用方式**: `/project:h5:game FlappyBird`
+
+## 🔄 跨平台开发命令 (2个)
+
+### 19. 多端统一开发 (`cross/unified.md`)
+```markdown
+---
+description: 创建多端统一开发项目
+argument-hint: [项目名称]
+allowed-tools: Bash(*), Write(*), Edit(*)
+---
+
+# 🔄 多端统一开发
+
+构建 $ARGUMENTS 跨平台项目：
+
+## 1. Taro多端框架
+```bash
+# 安装Taro CLI
+npm install -g @tarojs/cli
+
+# 创建项目
+taro init $ARGUMENTS
+cd $ARGUMENTS
+
+# 安装依赖
+npm install
+```
+
+## 2. 项目配置
+```javascript
+// config/index.js
+const config = {
+  projectName: '$ARGUMENTS',
+  date: '2025-1-1',
+  designWidth: 750,
+  deviceRatio: {
+    640: 2.34 / 2,
+    750: 1,
+    828: 1.81 / 2
+  },
+  sourceRoot: 'src',
+  outputRoot: 'dist',
+  plugins: [],
+  defineConstants: {},
+  copy: {
+    patterns: [],
+    options: {}
+  },
+  framework: 'react',
+  compiler: 'webpack5',
+  mini: {
+    postcss: {
+      pxtransform: {
+        enable: true,
+        config: {}
+      }
+    }
+  },
+  h5: {
+    publicPath: '/',
+    staticDirectory: 'static',
+    postcss: {
+      autoprefixer: {
+        enable: true
+      }
+    }
+  }
+}
+```
+
+## 3. 多端组件
+```typescript
+// src/components/UniversalButton.tsx
+import Taro from '@tarojs/taro';
+import { Button } from '@tarojs/components';
+import { FC } from 'react';
+
+interface UniversalButtonProps {
+  text: string;
+  onClick: () => void;
+  type?: 'primary' | 'default';
+}
+
+const UniversalButton: FC<UniversalButtonProps> = ({ text, onClick, type = 'default' }) => {
+  const handleClick = () => {
+    // 不同平台的反馈
+    if (process.env.TARO_ENV === 'weapp') {
+      Taro.vibrateShort();
+    }
+    onClick();
+  };
+
+  return (
+    <Button
+      className={`universal-btn universal-btn--${type}`}
+      onClick={handleClick}
+    >
+      {text}
+    </Button>
+  );
+};
+```
+
+## 4. 平台差异处理
+```typescript
+// src/utils/platform.ts
+export const getPlatform = () => {
+  return process.env.TARO_ENV;
+};
+
+export const isWeapp = () => process.env.TARO_ENV === 'weapp';
+export const isH5 = () => process.env.TARO_ENV === 'h5';
+export const isRN = () => process.env.TARO_ENV === 'rn';
+
+// 平台特定代码
+if (isWeapp()) {
+  // 小程序特定逻辑
+} else if (isH5()) {
+  // H5特定逻辑
+}
+```
+
+## 5. 构建发布
+```bash
+# 构建小程序
+npm run build:weapp
+
+# 构建H5
+npm run build:h5
+
+# 构建React Native
+npm run build:rn
+```
+
+项目名称：$ARGUMENTS
+```
+
+**使用方式**: `/project:cross:unified MultiPlatformApp`
+
+### 20. 代码共享库 (`cross/shared.md`)
+```markdown
+---
+description: 创建跨平台代码共享库
+argument-hint: [库名称]
+allowed-tools: Write(*), Edit(*), Bash(*)
+---
+
+# 📚 代码共享库
+
+构建 $ARGUMENTS 共享代码库：
+
+## 1. Monorepo架构
+```bash
+# 使用Lerna管理多包
+npm install -g lerna
+lerna init
+
+# 项目结构
+packages/
+├── shared-core/        # 核心逻辑
+├── shared-ui/          # UI组件
+├── shared-utils/       # 工具函数
+├── mobile-app/         # 移动端应用
+├── web-app/           # Web应用
+└── h5-app/            # H5应用
+```
+
+## 2. 核心共享代码
+```typescript
+// packages/shared-core/src/api/$ARGUMENTS.ts
+export interface ${ARGUMENTS}Config {
+  baseURL: string;
+  apiKey: string;
+  timeout: number;
+}
+
+export class ${ARGUMENTS}API {
+  private config: ${ARGUMENTS}Config;
+
+  constructor(config: ${ARGUMENTS}Config) {
+    this.config = config;
+  }
+
+  async request<T>(endpoint: string, options?: RequestInit): Promise<T> {
+    const url = `${this.config.baseURL}${endpoint}`;
+    const response = await fetch(url, {
+      ...options,
+      headers: {
+        'Authorization': `Bearer ${this.config.apiKey}`,
+        'Content-Type': 'application/json',
+        ...options?.headers
+      },
+      timeout: this.config.timeout
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
+  }
+}
+```
+
+## 3. 平台适配层
+```typescript
+// packages/shared-core/src/platform/index.ts
+export interface PlatformAdapter {
+  storage: {
+    get(key: string): Promise<string | null>;
+    set(key: string, value: string): Promise<void>;
+    remove(key: string): Promise<void>;
+  };
+  network: {
+    isConnected(): Promise<boolean>;
+  };
+  device: {
+    getInfo(): Promise<DeviceInfo>;
+  };
+}
+
+// React Native适配器
+export class ReactNativeAdapter implements PlatformAdapter {
+  storage = {
+    async get(key: string) {
+      return AsyncStorage.getItem(key);
+    },
+    async set(key: string, value: string) {
+      return AsyncStorage.setItem(key, value);
+    },
+    async remove(key: string) {
+      return AsyncStorage.removeItem(key);
+    }
+  };
+
+  network = {
+    async isConnected() {
+      const state = await NetInfo.fetch();
+      return state.isConnected;
+    }
+  };
+}
+
+// Web适配器
+export class WebAdapter implements PlatformAdapter {
+  storage = {
+    async get(key: string) {
+      return localStorage.getItem(key);
+    },
+    async set(key: string, value: string) {
+      localStorage.setItem(key, value);
+      return Promise.resolve();
+    },
+    async remove(key: string) {
+      localStorage.removeItem(key);
+      return Promise.resolve();
+    }
+  };
+
+  network = {
+    async isConnected() {
+      return navigator.onLine;
+    }
+  };
+}
+```
+
+## 4. 构建配置
+```javascript
+// packages/shared-core/rollup.config.js
+export default {
+  input: 'src/index.ts',
+  output: [
+    {
+      file: 'dist/index.cjs.js',
+      format: 'cjs'
+    },
+    {
+      file: 'dist/index.esm.js',
+      format: 'esm'
+    }
+  ],
+  external: ['react', 'react-native'],
+  plugins: [
+    typescript(),
+    resolve(),
+    commonjs()
+  ]
+};
+```
+
+## 5. 发布管理
+```bash
+# 版本管理
+lerna version
+
+# 发布到npm
+lerna publish
+
+# 本地链接测试
+lerna link
+```
+
+库名称：$ARGUMENTS
+```
+
+**使用方式**: `/project:cross:shared MySharedLibrary`
+
+## 📝 配置和部署指南
+
+### 快速部署所有命令
+```bash
+# 1. 创建完整的命令目录结构
+mkdir -p .claude/commands/{mobile,harmony,web,h5,cross,tools}
+
+# 2. 复制所有命令文件到对应目录
+# (将上述20个命令的markdown内容保存到对应路径)
+
+# 3. 在Claude Code中使用命令
+# 移动端: /project:mobile:rn-init MyApp
+# 鸿蒙: /project:harmony:init HarmonyApp
+# Web: /project:web:app ReactApp
+# H5: /project:h5:mobile H5App
+# 跨平台: /project:cross:unified MultiApp
+```
+
+### 命令分类说明
+
+| 分类 | 命令数量 | 主要功能 |
+|------|---------|----------|
+| 📱 移动端 | 6个 | React Native、Android、iOS、Flutter开发 |
+| 🌸 鸿蒙 | 4个 | HarmonyOS、ArkTS、ArkUI开发 |
+| 🌐 Web | 5个 | React、Vue、PWA、性能优化 |
+| 📲 H5 | 3个 | 移动端H5、微信生态、游戏开发 |
+| 🔄 跨平台 | 2个 | 多端统一、代码共享 |
+
+### 最佳实践建议
+
+1. **技术栈一致性** - 在同一项目中保持技术栈的一致性
+2. **性能优先** - 移动端开发特别注意性能和内存管理
+3. **平台适配** - 充分考虑不同平台的特性和限制
+4. **代码复用** - 最大化跨平台代码的复用率
+5. **测试覆盖** - 确保在目标平台上进行充分测试
+
+通过这些专业的移动端、鸿蒙、Web和H5开发命令，可以显著提升跨平台开发的效率和质量！
